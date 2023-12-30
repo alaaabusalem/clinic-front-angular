@@ -1,0 +1,170 @@
+<div class=" col-12 col-md-6 col-lg-6  p-3 mx-auto">
+
+    <div>
+      <app-loading *ngIf="IsLoading"></app-loading>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="errArray">
+      <ol>
+        <li *ngFor="let err of errArray">{{err}}</li>
+      </ol>
+    </div>
+  
+    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading" enctype="multipart/form-data">
+  
+      <div class="row">
+        <div class="nice-form-group col-md-6 pe-md-2">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+           ngModel name="name" required #name="ngModel">
+          <span *ngIf="!name.valid && name.touched" class="text-danger">
+            <span *ngIf="name.errors?.required">Name is required.</span>
+            <span *ngIf="name.errors?.duplicated">please choose another Name</span>
+          </span>
+        </div>
+  
+        <div class="nice-form-group col-md-6 ps-md-2">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" ngModel
+            name="Email" required #Email="ngModel">
+          <span *ngIf="!Email.valid && Email.touched" class="text-danger">
+            <span *ngIf="Email.errors?.required">Email is required.</span>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="nice-form-group col-md-6 pe-md-2">
+          <label for="exampleInputEmail1">Phone Number</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Phone Number" ngModel
+            name="PhoneNumber" required #PhoneNumber="ngModel">
+          <span *ngIf="!PhoneNumber.valid && PhoneNumber.touched" class="text-danger">
+            <span *ngIf="PhoneNumber.errors?.required">Phone Number is required.</span>
+          </span>
+        </div>
+        <div class="nice-form-group col-md-6 ps-md-2">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" ngModel name="password" placeholder="Password" required
+            #Password="ngModel" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$">
+          <span *ngIf="!Password.valid && Password.touched" class="text-danger">
+            <br>
+            <span *ngIf="Password.errors?.required">Password is required.</span>
+            <br>
+            <span *ngIf="Password.errors?.minlength">Password must be at least 8 characters. </span>
+            <br>
+  
+            <span *ngIf="Password.errors?.pattern">Password must contain at least one lowercase letter,<br> one uppercase
+              letter, and one digit.</span>
+            <br>
+          </span>
+        </div>
+      </div>
+      
+  
+      <div class="row">
+        <div class="nice-form-group col-md-2 pe-md-2">
+          <label>Gender</label>
+          <select [ngModel]="'male'" name="Gender" #Gender required>
+            <option value="female">female</option>
+            <option value="male">male</option>
+          </select>
+          <span *ngIf="!Gender.valid && Gender.touched" class="text-danger">
+            <span *ngIf="Gender.errors?.required">Gender is required.</span>
+          </span>
+        </div>
+        <div class="nice-form-group col-md-6 pe-md-2">
+          <label>Department</label>
+          <select  ngModel name="DepartmentId" #DepartmentId="ngModel" required>
+            <option *ngFor="let dep of departmentArr" [value]="dep.departmentId">{{dep.departmentName}}</option>
+            
+          </select>
+          <span *ngIf="!DepartmentId.valid && DepartmentId.touched" class="text-danger">
+            <span *ngIf="DepartmentId.errors?.required">Department is required.</span>
+          </span>
+        </div>
+        <div class="nice-form-group col-md-4 ps-md-2">
+          <label for="exampleInputEmail1">Specialization</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" ngModel
+            name="Specialization" required #Specialization="ngModel" required placeholder="...">
+          <span *ngIf="!Specialization.valid && Specialization.touched" class="text-danger">
+            <span *ngIf="Specialization.errors?.required">Specialization is required.</span>
+          </span>
+        </div>
+  
+      </div>
+      
+      <div class="row g-2">
+        <div class="nice-form-group col-md-3 ">
+          <label>open Time</label>
+          <input type="time" ngModel name="OpeningTime" #OpeningTime="ngModel" required/>
+          <span *ngIf="!OpeningTime.valid && OpeningTime.touched" class="text-danger">
+            <span *ngIf="OpeningTime.errors?.required">Open Time is required.</span>
+          </span>
+        </div>
+        <div class="nice-form-group col-md-3 ">
+          <label>close Time</label>
+          <input type="time" ngModel name="CloseTime" #CloseTime="ngModel" required/>
+          <span *ngIf="!CloseTime.valid && CloseTime.touched" class="text-danger">
+            <span *ngIf="CloseTime.errors?.required">Close Time is required.</span>
+          </span>
+        </div>
+  
+      </div>
+      <div>
+        <div class="row">
+          <div class="nice-form-group col-md-2 pe-md-2">
+            <label>Location</label>
+            <select ngModel name="LocationId" #LocationId required>
+              <option *ngFor="let loc of locationArr" [value]="loc.locationId">{{loc.locationName}}</option>
+            </select>
+            <span *ngIf="!LocationId.valid && LocationId.touched" class="text-danger">
+              <span *ngIf="LocationId.errors?.required">Location is required.</span>
+            </span>
+          </div>
+    
+          <div class="nice-form-group col-md-6 pe-md-1">
+            <label>Location Detailes</label>
+            <input type="text" placeholder="Your name" ngModel name="LocationDetailes" #LocationDetailes="ngModel" required/>
+            <div>
+            <span *ngIf="!LocationDetailes.valid && LocationDetailes.touched" class="text-danger">
+              <span *ngIf="LocationDetailes.errors?.required">Location is required.</span>
+            </span>
+          </div>
+          </div>
+          
+          <div class="nice-form-group col-md-4 ps-md-1">
+            <label>fees</label>
+            <input type="number" ngModel name="fees" #fees="ngModel" min="1" required placeholder="0"/>
+            
+            <span style="color: white; font-weight: 600; padding-right:2px;"> JD</span>
+            <div>
+            <span *ngIf="!fees.valid && fees.touched" class="text-danger">
+              <span *ngIf="fees.errors?.required">fees is required.</span>
+              <br>
+              <span *ngIf="fees.errors?.min" >fees must be a positive number </span>
+          <br>
+            </span>
+          </div>
+          </div>
+    
+        </div>
+        <div class="nice-form-group">
+          <label>more Info about you as a Doctor</label>
+          <textarea rows="5"  name="Description" ngModel #Description="ngModel"  required placeholder="more about you"></textarea>
+        </div>
+        <span *ngIf="!Description.valid && Description.touched" class="text-danger" >
+          <span *ngIf="Description.errors?.required">Description is required.</span>
+        </span>
+      </div>
+  
+      <div class="nice-form-group">
+  
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+      </div>
+    </form>
+    
+      <div class="nice-form-group col-md-6">
+        <label>upload your image</label>
+        <input type="File" name="ImageFile" id="fileToUpload" (change)="onSubmitPic($event)" accept="image/*">
+        
+      </div>
+    
+  </div>

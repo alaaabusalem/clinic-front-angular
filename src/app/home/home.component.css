@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .header {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    background: url('../shared/images/midical.webp') center/cover no-repeat;
+    color: #ffffff;
+    height: 100vh;
+  }
+
+  .main-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .feature {
+    text-align: center;
+    margin-bottom: 2rem;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+  }
+
+  .feature img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
