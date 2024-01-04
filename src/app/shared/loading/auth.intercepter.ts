@@ -11,10 +11,12 @@ import { Injectable } from "@angular/core";
 export class AuthIntercepters implements HttpInterceptor{
 
     constructor(private authService: AuthService){}
-    intercept(req: HttpRequest<any>, next: HttpHandler):Observable<any> {
+      intercept(req: HttpRequest<any>, next: HttpHandler):Observable<any> {
        return  this.authService.userEvent.pipe(take(1),exhaustMap(user=>{
      if(user==null){return next.handle(req)}
-     if(user.token== null){
+     if( (user.token== null)     ){
+      console.log(user);
+         console.log(user.token);
         this.authService.userEvent.next(null);
         return next.handle(req);
      }

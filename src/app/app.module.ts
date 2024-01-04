@@ -18,8 +18,12 @@ import { AuthIntercepters } from './shared/loading/auth.intercepter';
 import { DatePipe } from '@angular/common';
 import {ManagerGuard} from './shared/loading/manager-guard.service'
 import{ReactiveFormsModule} from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { DoctordetailsComponent } from './doctors/doctordetails/doctordetails.component';
+import { SearchComponent } from './search/search.component';
+import { AppointmentModalComponent } from './appointment-modal/appointment-modal.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     SignupdoctorComponent,
     LoginComponent,
     LoadingComponent,
+    DoctorsComponent,
+    DoctorComponent,
+    DoctordetailsComponent,
+    SearchComponent,
+    AppointmentModalComponent,
     
   ],
   imports: [

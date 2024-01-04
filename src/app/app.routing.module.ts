@@ -7,6 +7,7 @@ import { SignupdoctorComponent } from './auth/signupdoctor/signupdoctor.componen
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import {ManagerGuard} from './shared/loading/manager-guard.service'
+import { DoctorsComponent } from './doctors/doctors.component';
 const appRoutes:Routes=[
     {path: '', component: HomeComponent},
     {path:'auth',component:AuthComponent,children:[
@@ -16,7 +17,8 @@ const appRoutes:Routes=[
         {path:'Signup/manager',component:SignupmanagerComponent,canActivate:[ManagerGuard]},
         {path:'Signup/doctor',component:SignupdoctorComponent,canActivate:[ManagerGuard]},
 
-    ]}
+    ]},
+    {path:'Doctors',component:DoctorsComponent}
 ]
 
 @NgModule({

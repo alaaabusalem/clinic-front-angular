@@ -106,7 +106,11 @@
             <span *ngIf="CloseTime.errors?.required">Close Time is required.</span>
           </span>
         </div>
-  
+        <div class="nice-form-group col-md-6">
+          <label>upload your image</label>
+          <input type="File" name="image" ngModel id="fileToUpload" (change)="onFileChange($event)" accept="image/*">
+          
+        </div>
       </div>
       <div>
         <div class="row">
@@ -161,10 +165,5 @@
       </div>
     </form>
     
-      <div class="nice-form-group col-md-6">
-        <label>upload your image</label>
-        <input type="File" name="ImageFile" id="fileToUpload" (change)="onSubmitPic($event)" accept="image/*">
-        
-      </div>
     
   </div>

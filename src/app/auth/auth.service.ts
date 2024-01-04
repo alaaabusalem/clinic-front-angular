@@ -120,10 +120,10 @@ GetDepartments():Observable<Department[]>{
     }));
   }
 
-CreatDoctor(doctor:registerdoctor){
-  return this.http.post<number>('https://localhost:7197/api/user/RegisterDoctor', doctor,);
+CreatDoctor(formData: FormData,json:string){
+  return this.http.post<number>('https://localhost:7197/api/user/RegisterDoctor?postDtoJson='+json,formData);
 }
-StoreTheImage(doctorId:number,formData: FormData){
+StoreTheImage(doctorId:number,formData: FormData,json:string){
   const headers = new HttpHeaders({
     'Content-Type': 'multipart/form-data',
   });
