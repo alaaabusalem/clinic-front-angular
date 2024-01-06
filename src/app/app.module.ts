@@ -23,7 +23,8 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { DoctordetailsComponent } from './doctors/doctordetails/doctordetails.component';
 import { SearchComponent } from './search/search.component';
-import { AppointmentModalComponent } from './appointment-modal/appointment-modal.component'
+import { AppointmentModalComponent } from './appointment-modal/appointment-modal.component';
+import { CreateappointentComponent } from './createappointent/createappointent.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { AppointmentModalComponent } from './appointment-modal/appointment-modal
     DoctordetailsComponent,
     SearchComponent,
     AppointmentModalComponent,
+    CreateappointentComponent,
     
   ],
   imports: [

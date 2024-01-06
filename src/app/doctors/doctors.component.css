@@ -36,13 +36,14 @@ body {
 
 .apointment button {
     border-radius: 20px;
-    background-color: #eee;
+    background-color: #ffd700;
     color: #000;
-    border-color: #eee;
+    border-color: #ffd700;
     font-size: 13px
 }
 .apointment button:hover{
     background-color: black !important; /* Change this to your desired hover color */
-color: #ffd700 !important;;
+color: #ffd700 !important;
+border-color: black;
 
 }
