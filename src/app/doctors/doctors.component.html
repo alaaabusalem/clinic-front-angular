@@ -1,7 +1,10 @@
 <div class="container mt-5 mb-5" *ngIf="processingComplete">
         <app-search class="p-5"></app-search>
         
-        <div class="row">
+        <div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="IsLoading">
+          <app-loading *ngIf="IsLoading"></app-loading>
+      </div>
+        <div class="row" *ngIf="!IsLoading">
             <div *ngFor="let doc of doctorsArr; let i = index" class="col-md-4 p-4">
               <!-- Your app-doctor component goes here -->
               <app-doctor [doctor]="doc"></app-doctor>

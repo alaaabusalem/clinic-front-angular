@@ -17,7 +17,7 @@ import { DoctorService } from '../doctors/doctor.service';
 
 export class SearchComponent implements AfterContentInit,OnDestroy{
   @ViewChild('form',{ static: true }) form:NgForm;
-  IsLoading:boolean;
+  IsLoading=false;
   error:string;
   locationArr:Location[];
   departmentArr:Department[];
@@ -51,18 +51,23 @@ export class SearchComponent implements AfterContentInit,OnDestroy{
     const DepartmentIdRes=this.form.value.DepartmentId? true: false;
     //console.log(LocationIdRes);
     //console.log(DepartmentIdRes)
-
+    this.IsLoading=true;
  if(LocationIdRes && DepartmentIdRes){
+  this.searchService.SearchEvent.next(true);
   this.searchService.GetDoctorsByLocationAndDepartment(this.form.value.LocationId,this.form.value.DepartmentId);
  }
  else if(LocationIdRes){
+  this.searchService.SearchEvent.next(true);
+
   this.searchService.GetDoctorsByLocation(this.form.value.LocationId);
 }
 else if(DepartmentIdRes){
+  this.searchService.SearchEvent.next(true);
+
   this.searchService.GetDoctorsByDepartment(this.form.value.DepartmentId);
 
 }
-
+this.IsLoading=false;
   }
   ngOnDestroy(){
     if(this.GetDepartmentEvent){

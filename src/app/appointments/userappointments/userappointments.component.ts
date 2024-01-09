@@ -22,4 +22,12 @@ this.show=true;
      })
 
    }
+
+   Details(){
+
+   }
+
+   Doctor(doctorId:number){
+    console.log(doctorId)
+   }
 }

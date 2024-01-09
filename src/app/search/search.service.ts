@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 export class SearchService implements OnDestroy{
     doctors= new Subject<Doctor[]>();
     doctorsArr:Doctor[]=[];
-
+     SearchEvent=new Subject<boolean>();
     constructor(private http:HttpClient,private docService:DoctorService,private router: Router){
        
     }
@@ -22,6 +22,8 @@ export class SearchService implements OnDestroy{
             this.doctorsArr=doc;
             this.doctors.next(doc);
             this.router.navigate(['/Doctors'])
+            this.SearchEvent.next(false);
+
         })
     }
     public GetDoctorsByDepartment(departmentId: number){
@@ -31,7 +33,9 @@ export class SearchService implements OnDestroy{
             this.doctorsArr=doc;
 
             this.doctors.next(doc);
-            this.router.navigate(['/Doctors'])
+            this.router.navigate(['/Doctors']);
+            this.SearchEvent.next(false);
+
 
         })
     }
@@ -42,8 +46,8 @@ export class SearchService implements OnDestroy{
             this.doctorsArr=doc;
 
         this.doctors.next(doc);
-        this.router.navigate(['/Doctors'])
-
+        this.router.navigate(['/Doctors']);
+        this.SearchEvent.next(false);
         })
     }
 

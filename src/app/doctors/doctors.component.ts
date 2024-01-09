@@ -14,26 +14,31 @@ export class DoctorsComponent implements OnInit,OnDestroy{
   doctorsArr:Doctor[]=[];
   processingComplete = false;
   docEvent:Subscription;
-
+  IsLoading=false;
+  searchEvent:Subscription;
 constructor(private doctorService: DoctorService,private searchService: SearchService ) {}
 ngOnInit() {
  this.doctorsArr=this.searchService.doctorsArr;
  this.processingComplete = true;
 
- this.docEvent=this.searchService.doctors.subscribe(res=>{
+ this.searchEvent=this.docEvent=this.searchService.doctors.subscribe(res=>{
   this.doctorsArr=res;
  console.log(res);
   this.processingComplete = true;
-
 })
 
-
+this.searchService.SearchEvent.subscribe(result=>{
+  this.IsLoading=result;
+})
 
 }
 
 ngOnDestroy() {
   if(this.docEvent){
     this.docEvent.unsubscribe();
+  }
+  if(this.searchEvent){
+    this.searchEvent.unsubscribe();
   }
 }
 }

@@ -4,7 +4,7 @@
   </div>
 </div>
 <div *ngIf="show && !IsLoading" class="container-sm">
-  <div *ngIf="count>0;else NoAppointment" class="container-sm mt-5 pt-5">
+  <div *ngIf="count>0;else NoAppointment" class="container-sm mt-5 pt-5 pb-5">
 <table class="table text-center">
     <thead>
       <tr>
@@ -18,10 +18,10 @@
     <tbody>
       <tr *ngFor="let app of myAppointments;let i = index">
         <th scope="row">{{i+1}}</th>
-        <td><a>{{app.doctorName}}</a></td>
+        <td><a class="link-underline-light" style="cursor: pointer;" (click)="Doctor(app.doctorId)">{{app.doctorName}}</a></td>
         <td>{{app.appointmentStatus.name}}</td>
         <td>{{app.date | date:'mediumDate'}}, {{ app.time | formatTime }}</td>
-        <td><button>Details</button></td>
+        <td><a class="link-underline-light" style="cursor: pointer;" (click)="Details">Details</a></td>
       </tr>
    
       
