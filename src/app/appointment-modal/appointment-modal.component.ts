@@ -45,7 +45,7 @@ toggleShowMore() {
   this.maxHeight = this.showMore ? 0 : 300; // Set maxHeight to 0 when showing more, or 300 when showing less
 }
 AddAppointment(time:string,date:string){
-this.appointmentService.doctorAppointmentEvent.next(this.doctor);
+this.appointmentService.doctorToBook=this.doctor;
 const encodedDate = encodeURIComponent(date);
 const encodedTime = encodeURIComponent(time);
 this.activeModal.close();

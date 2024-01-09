@@ -17,9 +17,12 @@ export class AuthIntercepters implements HttpInterceptor{
      if( (user.token== null)     ){
       console.log(user);
          console.log(user.token);
+         localStorage.removeItem('user');
         this.authService.userEvent.next(null);
         return next.handle(req);
      }
+
+     console.log(user.token);
         const modifiedReq= req.clone({
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',

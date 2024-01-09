@@ -1,0 +1,73 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="IsLoading">
+    <div>
+        <app-loading></app-loading>
+    </div>
+</div>
+<div [hidden]="IsLoading">
+<div class="flex align-items-center justify-content-md-center m-3">
+    <p *ngIf="err" class="text-danger bolder">{{err}}</p>
+</div>
+<div class="row m-4 align-items-center justify-content-md-center" >
+
+    <div class="card p-2 py-3 col-md-5 ">
+        <div class="img mb-2"> <img src="https://i.imgur.com/LohyFIN.jpg" width="70" class="rounded-circle"> </div>
+        <h5 class="mb-0">{{doctor.name}}</h5> <small>{{doctor.departmentName}},{{doctor.specialization}}</small>
+        <div><i class="fa-solid fa-house"></i>{{doctor.locationName}},{{doctor.locationDetailes}}</div>
+        <div><i class="fa-solid fa-house"></i>{{doctor.fees}} JD</div>
+
+        <div class="mt-4 apointment d-flex justify-content-around align-items-center">
+            <p><a class="link-opacity-75"> {{time}}</a></p>
+            <p><a class="link-opacity-75"> {{date}}</a></p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6  ps-md-5">
+
+
+
+        <form (ngSubmit)="OnSubmit()" #form="ngForm">
+            <div class="row">
+                <div class="nice-form-group col-md-5">
+                    <label for="exampleInputEmail1">patient Name</label>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" ngModel name="name"
+                        #name="ngModel" required placeholder="name">
+                    <span *ngIf="!name.valid && name.touched" class="text-danger">
+                        <span *ngIf="name.errors?.required">patient Name is required.</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="nice-form-group col-md-5">
+                    <label for="exampleInputEmail1">contact Number</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="contact Number" ngModel name="contact" #contact="ngModel" required>
+                    <span *ngIf="!contact.valid && contact.touched" class="text-danger">
+                        <span *ngIf="contact.errors?.required">contact Number is required.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="nice-form-group col-md-5">
+                    <label for="exampleInputPassword1">patient Age</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="age" ngModel
+                        name="age" minlength="1" required #age="ngModel">
+                    <span *ngIf="!age.valid && age.touched" class="text-danger">
+                        <span *ngIf="age.errors?.required">patient Age is required.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="nice-form-group col-md-8">
+                    <button type="submit" class="btn btn-primary" [disabled]="!form.valid"
+                        style="width: 100px; height: 70px; font-weight: bolder;">Book</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

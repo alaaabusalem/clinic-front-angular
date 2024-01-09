@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { User } from './user.model';
-import { BehaviorSubject, tap,Observable, map } from 'rxjs';
+import { BehaviorSubject, tap,Observable, map, take } from 'rxjs';
 import { Time } from '@angular/common';
 import { Department } from '../shared/models/Department.model';
 import { Location } from '../shared/models/Location.model';
@@ -49,10 +49,21 @@ LoguotTime:any;
   Login(login: Login) {
 
 
-    return this.http.post<User>('https://localhost:7197/api/user/login', login).pipe(tap(user => {
+    return this.http.post('https://localhost:7197/api/user/login', login).pipe(tap(user => {
       localStorage.setItem('user', JSON.stringify(user));
-      this.userEvent.next(user);
-      this.AutoLogout(new Date(user.expired))
+      //myUser.token;
+      //console.log(myUser.token);
+      const myUser = user as {
+        name: string,
+        email: string,
+        _token: string,
+        expired: string,
+        role: string
+      };
+      const thisUser = new User(myUser.name, myUser.email, myUser._token, new Date(myUser.expired), myUser.role);
+this.userEvent.next(thisUser);
+
+      this.AutoLogout(new Date(myUser.expired))
 
     }));
 

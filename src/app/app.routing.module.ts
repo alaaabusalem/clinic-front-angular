@@ -8,8 +8,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import {ManagerGuard} from './shared/loading/manager-guard.service'
 import { DoctorsComponent } from './doctors/doctors.component';
-import { CreateappointentComponent } from './createappointent/createappointent.component'
-
+import { CreateappointentComponent } from './appointments/createappointent/createappointent.component'
+import { AppointmentsComponent } from './appointments/appointments.component'
+import { ThankyouComponent } from './appointments/thankyou/thankyou.component'
+import { UserappointmentsComponent } from './appointments/userappointments/userappointments.component';
 const appRoutes:Routes=[
     {path: '', component: HomeComponent},
     {path:'auth',component:AuthComponent,children:[
@@ -21,9 +23,14 @@ const appRoutes:Routes=[
 
     ]},
     {path:'Doctors',component:DoctorsComponent},
-    {path:'appointments/creat/:date/:time',component:CreateappointentComponent}
+    {path:'appointments',component:AppointmentsComponent,children:[
+        {path: 'creat/:date/:time', component: CreateappointentComponent},
+        {path: 'thankyou', component: ThankyouComponent},
+        {path: 'user/appointments', component: UserappointmentsComponent}
 
 
+    ]
+    },
 ]
 
 @NgModule({

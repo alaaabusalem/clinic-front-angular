@@ -11,6 +11,8 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
   vertical-align: initial;
   /* my css*/
 }
+
+
 .back-img{
   background: url('../shared/images/doc2.jpg') center/cover no-repeat;
  position: relative;
@@ -815,4 +817,17 @@ details summary::marker {
 
 details summary::-webkit-details-marker {
   display: none;
+}
+.btn-primary {
+  border-radius: 20px;
+  background-color: #ffd700 !important;
+  color: #000 !important;
+  border-color: #ffd700 !important;
+  font-size: 13px !important
+}
+.btn-primary:hover{
+  background-color: black !important; /* Change this to your desired hover color */
+color: #ffd700 !important;
+border-color: black !important;
+
 }

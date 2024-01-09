@@ -24,7 +24,12 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { DoctordetailsComponent } from './doctors/doctordetails/doctordetails.component';
 import { SearchComponent } from './search/search.component';
 import { AppointmentModalComponent } from './appointment-modal/appointment-modal.component';
-import { CreateappointentComponent } from './createappointent/createappointent.component'
+import { CreateappointentComponent } from './appointments/createappointent/createappointent.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { ThankyouComponent } from './appointments/thankyou/thankyou.component';
+import { UserappointmentsComponent } from './appointments/userappointments/userappointments.component';
+import { DoctorappointmentsComponent } from './appointments/doctorappointments/doctorappointments.component';
+import {FormatTimePipe} from './shared/formattime.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +47,11 @@ import { CreateappointentComponent } from './createappointent/createappointent.c
     SearchComponent,
     AppointmentModalComponent,
     CreateappointentComponent,
-    
+    AppointmentsComponent,
+    ThankyouComponent,
+    UserappointmentsComponent,
+    DoctorappointmentsComponent,
+    FormatTimePipe    
   ],
   imports: [
     BrowserModule,

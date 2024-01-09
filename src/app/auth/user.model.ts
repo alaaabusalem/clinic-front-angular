@@ -10,10 +10,9 @@ export class User {
         public expired: Date,
         public role: string) {
 
-        this.datePipe = new DatePipe('en-US');
-         this.expired = new Date(this.datePipe.transform(this.expired, 'MM/dd/yyyy hh:mm:ss a'));
-
-    }
+        //this.datePipe = new DatePipe('en-US');
+       
+           }
 
     get token() {
         const currentDate = new Date();
@@ -21,4 +20,7 @@ export class User {
         if (this.expired >= currentDate) return this._token;
         return null;
     }
+
+
+   
 }

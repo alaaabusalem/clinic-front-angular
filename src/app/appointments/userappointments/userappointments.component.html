@@ -1,0 +1,37 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="IsLoading">
+  <div>
+      <app-loading></app-loading>
+  </div>
+</div>
+<div *ngIf="show && !IsLoading" class="container-sm">
+  <div *ngIf="count>0;else NoAppointment" class="container-sm mt-5 pt-5">
+<table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"> Doctor</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of myAppointments;let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td><a>{{app.doctorName}}</a></td>
+        <td>{{app.appointmentStatus.name}}</td>
+        <td>{{app.date | date:'mediumDate'}}, {{ app.time | formatTime }}</td>
+        <td><button>Details</button></td>
+      </tr>
+   
+      
+    </tbody>
+  </table>
+</div>
+<ng-template #NoAppointment>
+  <div>
+    <p> There is No Appointments</p>
+  </div>
+</ng-template>
+
+</div>
