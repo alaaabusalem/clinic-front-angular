@@ -30,6 +30,10 @@ import { ThankyouComponent } from './appointments/thankyou/thankyou.component';
 import { UserappointmentsComponent } from './appointments/userappointments/userappointments.component';
 import { DoctorappointmentsComponent } from './appointments/doctorappointments/doctorappointments.component';
 import {FormatTimePipe} from './shared/formattime.pipe'
+import {ClientGuard} from './shared/client-guard.service'
+import {DoctorGuard} from './shared/doctor-guard.service'
+import { DoctorAppointmentFilterPipe } from './shared/doctorappointmentfilter.Pipe';
+import {UpdateappointmentComponent} from './appointments/updateappointment/updateappointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,10 @@ import {FormatTimePipe} from './shared/formattime.pipe'
     ThankyouComponent,
     UserappointmentsComponent,
     DoctorappointmentsComponent,
-    FormatTimePipe    
+    FormatTimePipe,
+    DoctorAppointmentFilterPipe,
+    UpdateappointmentComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,9 @@ import {FormatTimePipe} from './shared/formattime.pipe'
       multi: true,
     },
     DatePipe,
-    ManagerGuard
+    ManagerGuard,
+    ClientGuard,
+    DoctorGuard
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]

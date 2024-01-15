@@ -21,8 +21,8 @@ export class SignupdoctorComponent implements OnInit,OnDestroy,AfterContentInit{
   errArray:string[];
     departmentArr:Department[];
     locationArr:Location[];
-     formData:FormData;
-
+     //formData:FormData;
+     image:File
     
   constructor(private authService:AuthService,private router:Router,private route:ActivatedRoute){
       // Get Departments
@@ -60,21 +60,21 @@ this.departmentArr=res;
   }
     async OnSubmit(){
       // Creat registerdoctor obj
-     /*const doctor:registerdoctor={ name: this.form.value.name, Email: this.form.value.Email,
+     const doctor:registerdoctor={ name: this.form.value.name, Email: this.form.value.Email,
        password: this.form.value.password,
        PhoneNumber: this.form.value.PhoneNumber,LocationDetailes: this.form.value.LocationDetailes,
        LocationId:parseFloat(this.form.value.LocationId),
       DepartmentId:parseFloat(this.form.value.DepartmentId),fees:(this.form.value.fees.toString()),
     Gender:this.form.value.Gender,Description:this.form.value.Description,
   Specialization:this.form.value.Specialization,OpeningTime:this.form.value.OpeningTime,CloseTime:this.form.value.CloseTime};
-  this.IsLoading=true;*/
+  this.IsLoading=true;
 
 
 
     // Convert the rest of the form controls to a JSON string
     const postDtoJson = JSON.stringify(this.form.form.value);
   // submit the form
-   this.CreateDoctorEvent=this.authService.CreatDoctor(this.formData,postDtoJson).subscribe(res=>{
+   this.CreateDoctorEvent=this.authService.CreatDoctor(doctor,this.image).subscribe(res=>{
    // this.onSubmitPic(res);
     this.IsLoading=false;
   this.router.navigate(['/auth/login'])
@@ -113,32 +113,17 @@ if(err.error != null){
     }
   }*/
 
-  onFileChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
-      const file = target.files[0];
-      this.formData = new FormData();
-      this.formData.append('img',file);
-      console.log(file);
-
-    }
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    this.image = file;
+    console.log(this.image)
+    this.authService.StoreTheImage(this.image).subscribe(res=>{
+      console.log(res);
+    },err=>{
+      console.log(err);
+    })
   }
- // }
-
-  //onFileSelected() {
-   /* if (event.target.files.length > 0) {
-      const file = event.target.files.item(0);
-      this.Imgform.controls['Imgs'].setValue(file);
-      //console.log(file);
-      this.onSubmitPic();
-    }*/
-    
-    //let file = event.target.files[0];
-   // let formData = new FormData();
-    //formData.append('ImageFile', file);
-    //console.log("formData",formData);
-
- // }
+ 
 
    ngOnDestroy(){
     if(this.CreateDoctorEvent){

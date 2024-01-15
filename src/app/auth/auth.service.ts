@@ -131,13 +131,26 @@ GetDepartments():Observable<Department[]>{
     }));
   }
 
-CreatDoctor(formData: FormData,json:string){
-  return this.http.post<number>('https://localhost:7197/api/user/RegisterDoctor?postDtoJson='+json,formData);
-}
-StoreTheImage(doctorId:number,formData: FormData,json:string){
-  const headers = new HttpHeaders({
+  CreatDoctor(doctorData: any, image: File): Observable<number> {
+    const formData = new FormData();
+    formData.append('postDtoJson', JSON.stringify(doctorData));
+    formData.append('img', image);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.post<number>('https://localhost:7197/api/user/RegisterDoctor', formData,options);
+  }
+StoreTheImage(image: File){
+  const formData = new FormData();
+  formData.append('img', image);
+
+  const options = {
+    headers: new HttpHeaders({
     'Content-Type': 'multipart/form-data',
-  });
-  return this.http.post(`https://localhost:7197/api/user/RegisterDoctorImg/${doctorId}`, formData,{ headers });
+  }),
+};
+  return this.http.post(`https://localhost:7197/api/user/RegisterDoctorImg`,formData,options);
 }
 }

@@ -9,7 +9,7 @@
       </ol>
     </div>
   
-    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading" enctype="multipart/form-data">
+    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading">
   
       <div class="row">
         <div class="nice-form-group col-md-6 pe-md-2">
@@ -108,8 +108,8 @@
         </div>
         <div class="nice-form-group col-md-6">
           <label>upload your image</label>
-          <input type="File" name="image" ngModel id="fileToUpload" (change)="onFileChange($event)" accept="image/*">
-          
+          <input type="file" id="img" name="img" (change)="onImageSelected($event)" accept="image/*" required>
+
         </div>
       </div>
       <div>
