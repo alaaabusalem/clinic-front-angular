@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Mooli&family=PT+Sans:wght@700&family=Rubik:wght@300&display=swap');
+label{
+    color:#e0ffcd;
+}
+
+.thank{
+font-family: 'Great Vibes', cursive;
+font-family: 'Mooli', sans-serif;
+font-family: 'PT Sans', sans-serif;
+font-family: 'Rubik', sans-serif;
+font-weight: bold;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+p{
+    color: #283739;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DoctorService } from './doctors/doctor.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'clinic-front-angular';
+  
+  constructor(private docService: DoctorService) {
+   
+    
+  }
 }

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+body {
+    font-family: 'Maven Pro', sans-serif
+}
+
+body {
+    background-color: #eee
+}
+
+.add {
+    border-radius: 20px
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: all 1s;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+
+}
+
+
+.card:hover {
+    -webkit-box-shadow: 3px 5px 17px -4px #777777;
+    box-shadow: 3px 5px 17px -4px #777777;
+    transform: scale(1.1); /* Increase the size on hover (you can adjust the scale factor) */
+}
+
+
+
+.ratings i {
+    color: green
+}
+
+.apointment button {
+    border-radius: 20px;
+    background-color: #ffd700;
+    color: #000;
+    border-color: #ffd700;
+    font-size: 13px
+}
+.apointment button:hover{
+    background-color: black !important; /* Change this to your desired hover color */
+color: #ffd700 !important;
+border-color: black;
+
+}

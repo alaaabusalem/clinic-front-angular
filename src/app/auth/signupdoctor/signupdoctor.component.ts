@@ -21,8 +21,8 @@ export class SignupdoctorComponent implements OnInit,OnDestroy,AfterContentInit{
   errArray:string[];
     departmentArr:Department[];
     locationArr:Location[];
-     formData = new FormData();
-
+     //formData:FormData;
+     image:File
     
   constructor(private authService:AuthService,private router:Router,private route:ActivatedRoute){
       // Get Departments
@@ -68,8 +68,13 @@ this.departmentArr=res;
     Gender:this.form.value.Gender,Description:this.form.value.Description,
   Specialization:this.form.value.Specialization,OpeningTime:this.form.value.OpeningTime,CloseTime:this.form.value.CloseTime};
   this.IsLoading=true;
+
+
+
+    // Convert the rest of the form controls to a JSON string
+    const postDtoJson = JSON.stringify(this.form.form.value);
   // submit the form
-   this.CreateDoctorEvent=this.authService.CreatDoctor(doctor).subscribe(res=>{
+   this.CreateDoctorEvent=this.authService.CreatDoctor(doctor,this.image).subscribe(res=>{
    // this.onSubmitPic(res);
     this.IsLoading=false;
   this.router.navigate(['/auth/login'])
@@ -86,7 +91,7 @@ if(err.error != null){
    } )
   }
   
-  onSubmitPic(event: any) {
+ /* onSubmitPic(event: any) {
     const files = event.target.files;
   
     if (files && files.length > 0) {
@@ -106,23 +111,19 @@ if(err.error != null){
         }
       );
     }
+  }*/
+
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    this.image = file;
+    console.log(this.image)
+    this.authService.StoreTheImage(this.image).subscribe(res=>{
+      console.log(res);
+    },err=>{
+      console.log(err);
+    })
   }
- // }
-
-  //onFileSelected() {
-   /* if (event.target.files.length > 0) {
-      const file = event.target.files.item(0);
-      this.Imgform.controls['Imgs'].setValue(file);
-      //console.log(file);
-      this.onSubmitPic();
-    }*/
-    
-    //let file = event.target.files[0];
-   // let formData = new FormData();
-    //formData.append('ImageFile', file);
-    //console.log("formData",formData);
-
- // }
+ 
 
    ngOnDestroy(){
     if(this.CreateDoctorEvent){

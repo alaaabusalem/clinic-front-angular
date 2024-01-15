@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   userSub:Subscription;
   IsAuth=false;
   Role:string;
+  isCollapsed = true;
+
 constructor(private authService:AuthService,private router:Router){
   this.IsAuth=false;
   this.Role=null;

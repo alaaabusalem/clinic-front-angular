@@ -9,7 +9,7 @@
       </ol>
     </div>
   
-    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading" enctype="multipart/form-data">
+    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading">
   
       <div class="row">
         <div class="nice-form-group col-md-6 pe-md-2">
@@ -106,7 +106,11 @@
             <span *ngIf="CloseTime.errors?.required">Close Time is required.</span>
           </span>
         </div>
-  
+        <div class="nice-form-group col-md-6">
+          <label>upload your image</label>
+          <input type="file" id="img" name="img" (change)="onImageSelected($event)" accept="image/*" required>
+
+        </div>
       </div>
       <div>
         <div class="row">
@@ -161,10 +165,5 @@
       </div>
     </form>
     
-      <div class="nice-form-group col-md-6">
-        <label>upload your image</label>
-        <input type="File" name="ImageFile" id="fileToUpload" (change)="onSubmitPic($event)" accept="image/*">
-        
-      </div>
     
   </div>

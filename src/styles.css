@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-color:whitesmoke;
+    height: 100vh; /* 100% of the viewport height */
+    position: relative;
+}
+
+
+
+  .btn-primary {
+    border-radius: 20px;
+    background-color: #ffd700 !important;
+    color: #000 !important;
+    border-color: #ffd700 !important;
+    font-size: 13px !important
+}
+.btn-primary:hover{
+    background-color: black !important; /* Change this to your desired hover color */
+color: #ffd700 !important;
+border-color: black !important;
+
+}
+
+ 

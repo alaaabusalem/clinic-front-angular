@@ -32,6 +32,9 @@ ngOnInit(): void {
  this.LoginEvent=this.authService.Login(login).subscribe(res=>{
   this.IsLoading=false;
   //this.authService.userEvent.next(res);
+  //const myUser= new User(res.name,res.email,res.token,new Date(res.expired),res.role);
+
+  
   this.form.reset();
    this.router.navigate(['/']);
  },err =>{

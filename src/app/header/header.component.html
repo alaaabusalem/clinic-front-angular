@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light p-2" style=" background-color: rgba(252, 203, 6, 0.6) !important;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-2" style=" background-color:#ffd700 !important;">
     <a class="navbar-brand" >BOOKDOC</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" [ngClass]="{'active': isCollapsed}" (click)="isCollapsed = !isCollapsed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse flex justify-content-between " id="navbarSupportedContent">
+    
+    <div class="collapse navbar-collapse flex justify-content-between " [ngClass]="{'show': !isCollapsed}" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home</a>
+          <a class="nav-link" routerLink="/" >Home</a>
         </li>
         
         <li class="nav-item">
@@ -15,10 +15,10 @@
 
             <div ngbDropdown class="d-inline-block">
               <a
-               type="button" class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
+               type="button"  id="dropdownBasic1" ngbDropdownToggle class="nav-link dropdown-toggle">
                 Toggle dropdown
             </a>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
                 <button ngbDropdownItem>Action - 1</button>
                 <button ngbDropdownItem>Another Action</button>
                 <button ngbDropdownItem>Something else is here</button>
@@ -29,10 +29,10 @@
         </li>
        
         <li class="nav-item">
-          <a class="nav-link"  *ngIf="Role=='Admin'&& IsAuth">Admin</a>
+          <a class="nav-link"  *ngIf="Role=='Admin'&& IsAuth" >Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/auth/Signup/manager" *ngIf="IsAuth && Role=='Admin'">Signup Manager</a>
+          <a class="nav-link" routerLink="/auth/Signup/manager" *ngIf="IsAuth && Role=='Admin'" >Signup Manager</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/auth/Signup/doctor" *ngIf="IsAuth && Role=='Admin'">Signup Doctor</a>
@@ -51,6 +51,7 @@
           <a class="nav-link" *ngIf="IsAuth" (click)="OnLogout()" style="cursor: pointer;">Logout</a>
         </li>
       </ul>
+     
     </div>
   </nav>
   

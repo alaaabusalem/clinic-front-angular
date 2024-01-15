@@ -18,8 +18,22 @@ import { AuthIntercepters } from './shared/loading/auth.intercepter';
 import { DatePipe } from '@angular/common';
 import {ManagerGuard} from './shared/loading/manager-guard.service'
 import{ReactiveFormsModule} from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { DoctordetailsComponent } from './doctors/doctordetails/doctordetails.component';
+import { SearchComponent } from './search/search.component';
+import { AppointmentModalComponent } from './appointment-modal/appointment-modal.component';
+import { CreateappointentComponent } from './appointments/createappointent/createappointent.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { ThankyouComponent } from './appointments/thankyou/thankyou.component';
+import { UserappointmentsComponent } from './appointments/userappointments/userappointments.component';
+import { DoctorappointmentsComponent } from './appointments/doctorappointments/doctorappointments.component';
+import {FormatTimePipe} from './shared/formattime.pipe'
+import {ClientGuard} from './shared/client-guard.service'
+import {DoctorGuard} from './shared/doctor-guard.service'
+import { DoctorAppointmentFilterPipe } from './shared/doctorappointmentfilter.Pipe';
+import {UpdateappointmentComponent} from './appointments/updateappointment/updateappointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +45,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     SignupdoctorComponent,
     LoginComponent,
     LoadingComponent,
-    
+    DoctorsComponent,
+    DoctorComponent,
+    DoctordetailsComponent,
+    SearchComponent,
+    AppointmentModalComponent,
+    CreateappointentComponent,
+    AppointmentsComponent,
+    ThankyouComponent,
+    UserappointmentsComponent,
+    DoctorappointmentsComponent,
+    FormatTimePipe,
+    DoctorAppointmentFilterPipe,
+    UpdateappointmentComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -48,7 +75,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
       multi: true,
     },
     DatePipe,
-    ManagerGuard
+    ManagerGuard,
+    ClientGuard,
+    DoctorGuard
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]
