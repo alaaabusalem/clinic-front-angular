@@ -13,6 +13,8 @@ export class UserappointmentsComponent implements OnInit,OnDestroy{
     count=0;
     IsLoading=false;
     GetClientAppointmentsEvent:Subscription;
+    appointmentsFilter: string = '';
+
    constructor(private appService:AppointmentService) {}
    ngOnInit() {
     this.IsLoading=true;

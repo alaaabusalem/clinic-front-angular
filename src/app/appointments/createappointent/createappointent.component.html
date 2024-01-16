@@ -12,10 +12,10 @@
     <div class="card p-2 py-3 col-md-5 ">
         <div class="row align-items-center p-1">
             <div class="col-auto">
-                <img src="https://i.imgur.com/LohyFIN.jpg" width="70" class="rounded-circle">
+                <img [src]="doctor.img" width="70" class="rounded-circle">
             </div>
-            <div class="col-auto">
-                <h5 class="mb-0">{{ doctor.name }}</h5>
+            <div class="col-auto pl-1 bolder">
+                <h5 class="mb-0" style="font-weight: bolder!important; padding-left: 10px;">{{ doctor.name }}</h5>
             </div>
         </div>
         
@@ -41,9 +41,9 @@
         </svg>
             {{doctor.fees}} JD</div>
 
-        <div class="mt-4 apointment d-flex justify-content-around align-items-center">
-            <p><a class="link-opacity-75"> {{time}}</a></p>
-            <p><a class="link-opacity-75"> {{date}}</a></p>
+        <div class="mt-4 apointment d-flex justify-content-start align-items-center">
+            <p style="font-weight: bolder!important;">{{date | date:'mediumDate'}}<span> </span></p>
+            <p style="font-weight: bolder!important;">{{time | formatTime}}</p>
 
         </div>
 
