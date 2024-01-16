@@ -33,6 +33,8 @@ import {FormatTimePipe} from './shared/formattime.pipe'
 import {ClientGuard} from './shared/client-guard.service'
 import {DoctorGuard} from './shared/doctor-guard.service'
 import { DoctorAppointmentFilterPipe } from './shared/doctorappointmentfilter.Pipe';
+import { ClientAppointmentFilterPipe } from './shared/clientappointmentfilter.Pipe';
+
 import {UpdateappointmentComponent} from './appointments/updateappointment/updateappointment.component';
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import {UpdateappointmentComponent} from './appointments/updateappointment/updat
     DoctorappointmentsComponent,
     FormatTimePipe,
     DoctorAppointmentFilterPipe,
+    ClientAppointmentFilterPipe,
     UpdateappointmentComponent
   
   ],

@@ -12,7 +12,9 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
   /* my css*/
 }
 
-
+input,select:hover {
+  border-color: black !important; /* Change to your desired hover color */
+}
 .fixed-bottom-image {
   position: fixed;
   bottom: 0;
@@ -82,10 +84,10 @@ table {
   --nf-valid-input-border-color:var(--nf-input-border-color);
   --nf-valid-input-background-color:var(--nf-input-background-color);
   --nf-valid-input-color:inherit;
-  --nf-invalid-input-border-bottom-color:red;
-  --nf-valid-input-border-bottom-color:green;
+  /*--nf-invalid-input-border-bottom-color:red;
+  --nf-valid-input-border-bottom-color:green;*/
   --nf-label-font-size:var(--nf-small-font-size);
-  --nf-label-color:#f1f2f5;
+  --nf-label-color:black;
   --nf-label-font-weight:500;
   --nf-slider-track-background:#dfdfdf;
   --nf-slider-track-height:0.25rem;

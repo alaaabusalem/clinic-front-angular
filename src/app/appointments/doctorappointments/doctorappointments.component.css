@@ -1,0 +1,7 @@
+label{
+    color: black !important;
+}
+.form-group input:focus {
+    border-color: black; /* Change to your desired focus color */
+    box-shadow: 0 0 5px black; /* Optional: Add a subtle box shadow on focus */
+  }
