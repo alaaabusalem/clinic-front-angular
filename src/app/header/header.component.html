@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-2" style=" background-color:#ffd700 !important;">
-    <a class="navbar-brand" >BOOKDOC</a>
+    <a class="navbar-brand" >BOOK<span class="italic-text" style="color: rgba(0, 0, 0, 0.7);font-style:italic !important;">DOC</span></a>
     <button class="navbar-toggler" type="button" [ngClass]="{'active': isCollapsed}" (click)="isCollapsed = !isCollapsed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
         <li class="nav-item">
 
 
-            <div ngbDropdown class="d-inline-block">
+            <div ngbDropdown class="d-inline-block" *ngIf="IsAuth && Role=='Admin'">
               <a
                type="button"  id="dropdownBasic1" ngbDropdownToggle class="nav-link dropdown-toggle">
 Admin
@@ -37,7 +37,7 @@ Admin
         <li class="nav-item">
           <a class="nav-link" routerLink="/appointments/user/appointments" *ngIf="Role=='Patient'&& IsAuth" >My Appointments</a>
         </li>
-        
+
       </ul>
       <ul class="navbar-nav ">
         <li class="nav-item">

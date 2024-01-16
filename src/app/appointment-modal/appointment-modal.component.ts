@@ -30,7 +30,6 @@ export class AppointmentModalComponent implements OnInit,OnDestroy{
 ngOnInit(){
   this.getDoctorAppEvent= this.docService.GetDoctorApointment(this.Id).subscribe(res=>{
 this.doctor=res;
-console.log(this.doctor);
 this.totalItems=this.doctor.dateSlots.length;
 this.isCompleted=true;
   })
@@ -40,10 +39,7 @@ get displayedItems() {
   return this.doctor.dateSlots.slice(startIndex, startIndex + this.pageSize);
 }
 
-toggleShowMore() {
-  this.showMore = !this.showMore;
-  this.maxHeight = this.showMore ? 0 : 300; // Set maxHeight to 0 when showing more, or 300 when showing less
-}
+
 AddAppointment(time:string,date:string){
 this.appointmentService.doctorToBook=this.doctor;
 const encodedDate = encodeURIComponent(date);
@@ -52,6 +48,8 @@ this.activeModal.close();
 this.router.navigate([`appointments/creat/${encodedDate}/${encodedTime}`])
 }
   ngOnDestroy() {
-    
+    if(this.getDoctorAppEvent){
+      this.getDoctorAppEvent.unsubscribe();
+    }
   }
 }

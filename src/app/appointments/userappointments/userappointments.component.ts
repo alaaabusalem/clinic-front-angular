@@ -32,7 +32,6 @@ this.show=true;
    }
 
    Doctor(doctorId:number){
-    console.log(doctorId)
    }
 
    ngOnDestroy(){
