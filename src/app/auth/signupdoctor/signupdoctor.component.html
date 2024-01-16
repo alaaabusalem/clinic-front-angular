@@ -1,15 +1,17 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="IsLoading">
+  <div>
+      <app-loading></app-loading>
+  </div>
+</div>
 <div class=" col-12 col-md-6 col-lg-6  p-3 mx-auto">
 
-    <div>
-      <app-loading *ngIf="IsLoading"></app-loading>
-    </div>
     <div class="alert alert-danger" role="alert" *ngIf="errArray">
       <ol>
         <li *ngFor="let err of errArray">{{err}}</li>
       </ol>
     </div>
   
-    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading">
+    <form (ngSubmit)="OnSubmit()" #form="ngForm" [hidden]="IsLoading || !showHtml">
   
       <div class="row">
         <div class="nice-form-group col-md-6 pe-md-2">

@@ -1,9 +1,11 @@
-
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="IsLoading">
+  <div>
+      <app-loading></app-loading>
+  </div>
+</div>
 <div class="col-12 col-md-6 col-lg-3  p-3 mx-auto">
 
-    <div>
-      <app-loading *ngIf="IsLoading"></app-loading>
-    </div>
+    
     <div class="alert alert-danger" role="alert" *ngIf="errArray">
       <ol>
         <li *ngFor="let err of errArray">{{err}}</li>

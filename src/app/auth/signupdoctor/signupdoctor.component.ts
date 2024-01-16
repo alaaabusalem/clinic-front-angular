@@ -5,6 +5,8 @@ import { Subscription,Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from '../../shared/models/Department.model';
 import { Location } from '../../shared/models/Location.model';
+import { BlobStorageService } from 'src/app/shared/blobstorage.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signupdoctor',
@@ -18,13 +20,15 @@ export class SignupdoctorComponent implements OnInit,OnDestroy,AfterContentInit{
   GetDepartmentEvent:Subscription;
 
   IsLoading:boolean=false;
+  showHtml=false;
   errArray:string[];
     departmentArr:Department[];
     locationArr:Location[];
      //formData:FormData;
-     image:File
+     image:File;
+
     
-  constructor(private authService:AuthService,private router:Router,private route:ActivatedRoute){
+  constructor(private authService:AuthService,private router:Router,private route:ActivatedRoute,private blobService:BlobStorageService){
       // Get Departments
      
             
@@ -35,27 +39,26 @@ export class SignupdoctorComponent implements OnInit,OnDestroy,AfterContentInit{
   }
 
   ngAfterContentInit() {
-  
- //Get Department 
- 
-    this.GetDepartmentEvent=this.GetDepartmentEvent=this.authService.GetDepartments().subscribe(res=>{
-      console.log(res)
-this.departmentArr=res;
-
-    })
-        // Get Locations
-
-    this.GetLocationEvent=this.GetLocationEvent=this.authService.GetLocations().subscribe(res=>{
-      console.log(res)
-
-      this.locationArr=res;
- 
-            this.form.form.patchValue({
-              LocationId: this.locationArr[0].locationId,
-              DepartmentId:this.departmentArr[0].departmentId
-            
-          });
-          })
+    this.GetDepartmentEvent = this.authService.GetDepartments().pipe(
+      switchMap(departmentRes => {
+        console.log(departmentRes);
+        this.departmentArr = departmentRes;
+    
+        // Return the observable for the next subscription
+        return this.authService.GetLocations();
+      })
+    ).subscribe(locationRes => {
+      console.log(locationRes);
+    
+      this.locationArr = locationRes;
+    
+      this.form.form.patchValue({
+        LocationId: this.locationArr[0].locationId,
+        DepartmentId: this.departmentArr[0].departmentId            
+      });
+    
+      this.showHtml = true;
+    });
           
   }
     async OnSubmit(){
@@ -113,16 +116,26 @@ if(err.error != null){
     }
   }*/
 
-  onImageSelected(event: any): void {
+  async onImageSelected(event: any): Promise<void> {
     const file = event.target.files[0];
-    this.image = file;
-    console.log(this.image)
-    this.authService.StoreTheImage(this.image).subscribe(res=>{
-      console.log(res);
-    },err=>{
-      console.log(err);
-    })
+this.image=file;
+    if (!this.image) {
+      console.error('No file selected.');
+      return;
+    }
+
+    // Convert the selected file to Uint8Array
+    const fileArrayBuffer = await this.image.arrayBuffer();
+    const content = new Uint8Array(fileArrayBuffer);
+
+    // Upload the file and get the generated blob URL and file name
+    const { blobUrl, fileName } = await this.blobService.uploadBlob(content);
+
+    console.log('Blob URL:', blobUrl);
+    console.log('Generated File Name:', fileName);
   }
+  
+  
  
 
    ngOnDestroy(){

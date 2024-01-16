@@ -13,7 +13,7 @@ export class UpdateappointmentComponent implements OnInit, AfterContentInit{
   @ViewChild('form',{ static: true }) form:NgForm;
 isLoading=false;
 appointmentId;
-appointment:DoctorAppointment;
+appointment:UpdateAppointment;
 appStatusArray:appointmentStatus[];
 showHtml=false;
 err:string;
@@ -43,9 +43,9 @@ ngOnInit(){
       patientName: this.appointment.patientName,
       patientAge: this.appointment.patientAge,
       contactNumber: this.appointment.contactNumber,
-      description: "",
-      medicines: "",
-      appointmentStatusId: this.appointment.appointmentStatus.appointmentStatusId
+      description:this.appointment.description,
+      medicines: this.appointment.medicines,
+      appointmentStatusId: this.appointment.appointmentStatusId
       });
   });
 }
@@ -53,6 +53,18 @@ ngAfterContentInit() {
   this.isLoading=false;
 
 }
-OnSubmit(){}
+OnSubmit(){
+  this.appointment.patientName=this.form.value.patientName;
+  this.appointment.patientAge=this.form.value.patientAge;
+  this.appointment.contactNumber=this.form.value.contactNumber;
+  this.appointment.description=this.form.value.description;
+  this.appointment.medicines=this.form.value.medicines;
+  this.appointment.appointmentStatusId=Number(this.form.value.appointmentStatusId);
+
+this.appointmentservice.UpdateAppointment(this.appointment).subscribe(res=>{
+  console.log(res);
+})
+
+}
 }
 

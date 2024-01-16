@@ -48,8 +48,9 @@ export interface UpdateAppointment {
   contactNumber: string,
   description: string,
   medicines: string,
-  appointmentStatusId: number
-   
+  appointmentStatusId: number,
+  date: string,
+  time: string  
 }
 
 export interface appointmentStatus{
@@ -76,10 +77,14 @@ export class AppointmentService {
   }
 
   GetDoctorAppointment(appintmentId: number) {
-    return this.http.get<DoctorAppointment>(`https://localhost:7197/api/Appointments/Doctor/appointment/${appintmentId}`)
+    return this.http.get<UpdateAppointment>(`https://localhost:7197/api/Appointments/Doctor/appointment/${appintmentId}`)
   }
 
   GetAppointmentStatus() {
     return this.http.get<appointmentStatus[]>(`https://localhost:7197/api/Appointments/appointmentStatus`)
+  }
+
+  UpdateAppointment(appointment:UpdateAppointment) {
+    return this.http.put<boolean>(`https://localhost:7197/api/Appointments/Doctor/appointments/Update`,appointment)
   }
 }
