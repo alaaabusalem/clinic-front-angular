@@ -16,6 +16,7 @@ import {ClientGuard} from './shared/client-guard.service'
 import { DoctorappointmentsComponent } from './appointments/doctorappointments/doctorappointments.component';
 import {DoctorGuard} from './shared/doctor-guard.service'
 import {UpdateappointmentComponent} from './appointments/updateappointment/updateappointment.component';
+import { SuccessregisterationComponent } from './auth/successregisteration/successregisteration.component';
 
 const appRoutes:Routes=[
     {path: '', component: HomeComponent},
@@ -25,6 +26,7 @@ const appRoutes:Routes=[
         {path:'Signup/user',component:SignupuserComponent},
         {path:'Signup/manager',component:SignupmanagerComponent,canActivate:[ManagerGuard]},
         {path:'Signup/doctor',component:SignupdoctorComponent,canActivate:[ManagerGuard]},
+        {path:'success',component:SuccessregisterationComponent,canActivate:[ManagerGuard]}
 
     ]},
     {path:'Doctors',component:DoctorsComponent},

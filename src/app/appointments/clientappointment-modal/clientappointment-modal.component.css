@@ -1,0 +1,12 @@
+/* In your CSS file or style section */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.appointment-details label {
+   font-weight: bold;
+   font-size: 16px;
+   font-family: 'Roboto', sans-serif; /* Use the imported font */
+}
+
+.detail {
+   margin-bottom: 10px;
+}

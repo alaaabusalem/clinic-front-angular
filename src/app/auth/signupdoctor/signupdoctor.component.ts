@@ -80,7 +80,7 @@ export class SignupdoctorComponent implements OnInit,OnDestroy,AfterContentInit{
    this.CreateDoctorEvent=this.authService.CreatDoctor(doctor,this.image).subscribe(res=>{
    // this.onSubmitPic(res);
     this.IsLoading=false;
-  this.router.navigate(['/auth/login'])
+  this.router.navigate(['/auth/success'])
    },err =>{
     this.IsLoading=false;
 if(err.error != null){

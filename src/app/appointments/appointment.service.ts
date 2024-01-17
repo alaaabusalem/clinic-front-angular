@@ -20,6 +20,9 @@ export interface clientAppointment {
   time: string,
   doctorId: number,
   doctorName: string,
+  description: string,
+  medicines: string,
+  doctorPhone:string,
   appointmentStatus: {
     appointmentStatusId: number,
     name: string
@@ -71,6 +74,9 @@ export class AppointmentService {
 
   GetClientAppointments() {
     return this.http.get<clientAppointment[]>('https://localhost:7197/api/Appointments/Client/appointments')
+  }
+  GetClientAppointment(appointmentId:number) {
+    return this.http.get<clientAppointment>(`https://localhost:7197/api/Appointments/Client/appointment/${appointmentId}`)
   }
   GetDoctorAppointments() {
     return this.http.get<DoctorAppointment[]>('https://localhost:7197/api/Appointments/Doctor/appointments')

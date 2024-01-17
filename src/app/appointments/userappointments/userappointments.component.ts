@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppointmentService, clientAppointment } from '../appointment.service';
 import { Subscription } from 'rxjs';
+import { ClientappointmentModalComponent } from '../clientappointment-modal/clientappointment-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-userappointments',
@@ -15,7 +17,7 @@ export class UserappointmentsComponent implements OnInit,OnDestroy{
     GetClientAppointmentsEvent:Subscription;
     appointmentsFilter: string = '';
 
-   constructor(private appService:AppointmentService) {}
+   constructor(private appService:AppointmentService,private modalService:NgbModal) {}
    ngOnInit() {
     this.IsLoading=true;
    this.GetClientAppointmentsEvent=  this.appService.GetClientAppointments().subscribe(res=>{
@@ -27,8 +29,10 @@ this.show=true;
 
    }
 
-   Details(){
-
+   openModal(appointmentId:number){
+    const Id=Number(appointmentId);
+    const modalRef = this.modalService.open(ClientappointmentModalComponent);
+    modalRef.componentInstance.Id =Id ;
    }
 
    Doctor(doctorId:number){

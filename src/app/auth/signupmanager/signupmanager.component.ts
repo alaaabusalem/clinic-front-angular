@@ -23,7 +23,7 @@ export class SignupmanagerComponent {
   this.IsLoading=true;
    this.CreateManagerEvent=this.authService.CreateManager(user).subscribe(res=>{
     this.IsLoading=false;
-  this.router.navigate(['/auth/login'])
+  this.router.navigate(['/auth/success'])
    },err =>{
     this.IsLoading=false;
 if(err.error != null){
