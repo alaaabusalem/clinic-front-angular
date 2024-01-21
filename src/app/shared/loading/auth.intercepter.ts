@@ -25,7 +25,6 @@ export class AuthIntercepters implements HttpInterceptor{
      console.log(user.token);
         const modifiedReq= req.clone({
             headers: new HttpHeaders({
-                'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`,
               })
         })

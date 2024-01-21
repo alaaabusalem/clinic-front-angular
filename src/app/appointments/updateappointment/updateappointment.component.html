@@ -7,22 +7,22 @@
 <div class="flex align-items-center justify-content-md-center m-3">
     <p *ngIf="err" class="text-danger bolder">{{err}}</p>
 </div>
-<div class="container" >
+
 
    
+    <div class="col-12 col-md-6 col-lg-6  p-3">
 
     <div class="container">
 
-    
-
-        <form (ngSubmit)="OnSubmit()" #form="ngForm">
+        <form (ngSubmit)="OnSubmit()" #form="ngForm"  [hidden]="!showHtml">
             <div class="">
                 <span class="bolder"> {{appointment.date | date:'mediumDate'}} </span>
                 <span class="bolder"> {{appointment.time  | formatTime}} </span> 
               </div>
               <hr>
-            <div class="row">
-                <div class="nice-form-group col-md-5">
+              <div class="row"></div>
+              <div class="row">
+                <div class="nice-form-group col-md-6 pe-md-2">
                     <label for="exampleInputEmail1">patient Name</label>
                     <input type="text" class="form-control" aria-describedby="emailHelp" ngModel name="patientName"
                         #patientName="ngModel" required placeholder="patien tName">
@@ -30,11 +30,10 @@
                         <span *ngIf="patientName.errors?.required">patient Name is required.</span>
                     </span>
                 </div>
-            </div>
 
-            <div class="row">
+          
 
-                <div class="nice-form-group col-md-5">
+                <div class="nice-form-group col-md-6 ps-md-2">
                     <label for="exampleInputEmail1">contact Number</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="contact Number" ngModel name="contactNumber" #contactNumber="ngModel" required>
@@ -45,9 +44,10 @@
             </div>
    
   
+         
             <div class="row">
 
-                <div class="nice-form-group col-md-5">
+                <div class="nice-form-group col-md-6 pe-md-2">
                     <label for="age">patient Age</label>
                     <input type="number" class="form-control" id="age" placeholder="age" ngModel
                         name="patientAge" minlength="1" required #patientAge="ngModel">
@@ -55,48 +55,51 @@
                         <span *ngIf="patientAge.errors?.required">patient Age is required.</span>
                     </span>
                 </div>
-            </div>
-            <div class="row">
 
-                <div class="nice-form-group col-md-5">
+                <div class="nice-form-group col-md-6 ps-md-2">
+                    <label for="appointmentStatusId"> AppointmentStatus</label>
+                    <select  ngModel name="appointmentStatusId" id="appointmentStatusId" #appointmentStatusId class="form-control text-center" type="search">
+                        <option class="bolder" *ngFor="let status of appStatusArray" [value]="status.appointmentStatusId">{{status.name}}</option>
+                    </select>
+                    <span *ngIf="!appointmentStatusId.valid && appointmentStatusId.touched" class="text-danger">
+                        <span *ngIf="AppointmentStatus.errors?.required">AppointmentStatus is required.</span>
+                    </span>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <div class="nice-form-group col-md-6 pe-md-2">
                     <label for="description"> description</label>
-                    <textarea rows="3"  class="form-control" id="description" placeholder="description" ngModel
+                    <textarea rows="5"  class="form-control" id="description" placeholder="description" ngModel
                         name="description"  required #description="ngModel"></textarea>
                     <span *ngIf="!description.valid && description.touched" class="text-danger">
                         <span *ngIf="description.errors?.required">description  is required.</span>
                     </span>
                 </div>
-            </div>
+           
 
-            <div class="row">
+       
 
-                <div class="nice-form-group col-md-5">
-                    <label for="medicines"> medicines</label>
+                <div class="nice-form-group col-md-6">
+                    <label for="medicines">medicines</label>
                     <textarea rows="5" class="form-control" id="medicines" placeholder="medicines" ngModel
                         name="medicines"  required #medicines="ngModel"></textarea>
                     <span *ngIf="!medicines.valid && medicines.touched" class="text-danger">
                         <span *ngIf="medicines.errors?.required">medicines  is required.</span>
                     </span>
                 </div>
+     
             </div>
-            <div class="row">
 
-                <div class="nice-form-group col-md-5">
-                    <label for="appointmentStatusId"> AppointmentStatus</label>
-                    <select ngModel name="appointmentStatusId" id="appointmentStatusId" #appointmentStatusId class="form-control text-center" type="search">
-                        <option *ngFor="let status of appStatusArray" [value]="status.appointmentStatusId">{{status.name}}</option>
-                    </select>
-                    <span *ngIf="!appointmentStatusId.valid && appointmentStatusId.touched" class="text-danger">
-                        <span *ngIf="AppointmentStatus.errors?.required">AppointmentStatus is required.</span>
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="nice-form-group col-md-8">
+               
+      
+        
+                <div class="nice-form-group">
                     <button type="submit" class="btn btn-primary" [disabled]="!form.valid"
-                        style="width: 100px; height: 70px; font-weight: bolder;">Update</button>
+                       >Update</button>
                 </div>
-            </div>
+       
         </form>
     </div>
 </div>

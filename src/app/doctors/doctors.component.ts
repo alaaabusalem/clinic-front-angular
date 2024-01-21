@@ -23,7 +23,6 @@ ngOnInit() {
 
  this.searchEvent=this.docEvent=this.searchService.doctors.subscribe(res=>{
   this.doctorsArr=res;
- console.log(res);
   this.processingComplete = true;
 })
 

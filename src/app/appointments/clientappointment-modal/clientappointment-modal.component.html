@@ -1,0 +1,46 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;" *ngIf="isLoading">
+    <div>
+        <app-loading></app-loading>
+    </div>
+</div>
+
+<div *ngIf="!isLoading">
+
+<div class="modal-header">
+    <div class="row align-items-center p-1">
+       
+        <div class="col">
+            <h3>Dr.{{ app.doctorName }} - <span style="font-size:18px;">{{app.doctorPhone}}</span></h3>
+            <h5>{{app.date | date:'mediumDate'}}{{ app.time | formatTime}}</h5>
+        </div>
+    </div>    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+    <div class="appointment-details">
+        <div class="detail">
+           <label>Patient Name:</label>
+           <label>{{ app.patientName }}</label>
+        </div>
+     
+        <div class="detail">
+           <label>Patient Age:</label>
+           <label>{{ app.patientAge }}</label>
+        </div>
+     
+        <div class="detail">
+           <label>Description:</label>
+           <label>{{ app.description }}</label>
+        </div>
+     
+        <div class="detail">
+           <label>Medicines:</label>
+           <label>{{ app.medicines }}</label>
+        </div>
+     </div>
+     
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</div>

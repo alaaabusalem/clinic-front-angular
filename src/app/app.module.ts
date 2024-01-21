@@ -36,6 +36,8 @@ import { DoctorAppointmentFilterPipe } from './shared/doctorappointmentfilter.Pi
 import { ClientAppointmentFilterPipe } from './shared/clientappointmentfilter.Pipe';
 
 import {UpdateappointmentComponent} from './appointments/updateappointment/updateappointment.component';
+import { SuccessregisterationComponent } from './auth/successregisteration/successregisteration.component';
+import { ClientappointmentModalComponent } from './appointments/clientappointment-modal/clientappointment-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import {UpdateappointmentComponent} from './appointments/updateappointment/updat
     FormatTimePipe,
     DoctorAppointmentFilterPipe,
     ClientAppointmentFilterPipe,
-    UpdateappointmentComponent
+    UpdateappointmentComponent,
+    SuccessregisterationComponent,
+    ClientappointmentModalComponent
   
   ],
   imports: [

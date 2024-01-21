@@ -39,7 +39,7 @@
               (click)="Doctor(app.doctorId)">{{app.doctorName}}</a></td>
           <td>{{app.appointmentStatus.name}}</td>
           <td>{{app.date | date:'mediumDate'}}, {{ app.time | formatTime }}</td>
-          <td><a class="link-underline-light" style="cursor: pointer;" (click)="Details">Details</a></td>
+          <td><a class="link-underline-light" style="cursor: pointer;"  (click)="openModal(app.appointmentId)">Details</a></td>
         </tr>
 
 

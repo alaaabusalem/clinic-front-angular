@@ -1,5 +1,5 @@
 import { AfterContentInit, Component, OnInit,ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService, DoctorAppointment, UpdateAppointment, appointmentStatus } from '../appointment.service';
 import { switchMap } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-updateappointment',
   templateUrl: './updateappointment.component.html',
-  styleUrls: ['./updateappointment.component.css']
+  styleUrls: ['../../auth/auth.component.css']
 })
 export class UpdateappointmentComponent implements OnInit, AfterContentInit{
   @ViewChild('form',{ static: true }) form:NgForm;
@@ -17,7 +17,7 @@ appointment:UpdateAppointment;
 appStatusArray:appointmentStatus[];
 showHtml=false;
 err:string;
-constructor(private route: ActivatedRoute,private appointmentservice: AppointmentService) {}
+constructor(private route: ActivatedRoute,private appointmentservice: AppointmentService,private router:Router) {}
 
 ngOnInit(){
   this.isLoading=true;
@@ -47,6 +47,7 @@ ngOnInit(){
       medicines: this.appointment.medicines,
       appointmentStatusId: this.appointment.appointmentStatusId
       });
+      this.showHtml=true;
   });
 }
 ngAfterContentInit() {
@@ -55,14 +56,14 @@ ngAfterContentInit() {
 }
 OnSubmit(){
   this.appointment.patientName=this.form.value.patientName;
-  this.appointment.patientAge=this.form.value.patientAge;
+  this.appointment.patientAge=this.form.value.patientAge.toString();
   this.appointment.contactNumber=this.form.value.contactNumber;
   this.appointment.description=this.form.value.description;
   this.appointment.medicines=this.form.value.medicines;
   this.appointment.appointmentStatusId=Number(this.form.value.appointmentStatusId);
-
+console.log(this.appointment);
 this.appointmentservice.UpdateAppointment(this.appointment).subscribe(res=>{
-  console.log(res);
+  this.router.navigate(['/appointments/doctor/appointments'])
 })
 
 }
