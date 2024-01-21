@@ -22,14 +22,19 @@
         <div style="max-height: 200px; overflow-y: auto;" class="scroll-container row" *ngIf="dateSlot.timeSlots.length>1; else non">
             <h4 class="bolder pb-2">{{dateSlot.date | date:'mediumDate'}} </h4>
             <button
-              [disabled]="!timeSlot.isAvailable"
-              *ngFor="let timeSlot of dateSlot.timeSlots"
-              type="button"
-              class="m-1 btn btn-light col-md-3"
-              (click)="AddAppointment(timeSlot.time, dateSlot.date)"
-            >
-              {{ timeSlot.time | formatTime}}
-            </button>
+            [disabled]="!timeSlot.isAvailable"
+            *ngFor="let timeSlot of dateSlot.timeSlots"
+            type="button"
+            class="m-1 btn btn-light col-md-3"
+            (click)="AddAppointment(timeSlot.time, dateSlot.date)"
+          >
+            <span *ngIf="!timeSlot.isAvailable; else Available">
+              <del>{{ timeSlot.time | formatTime}}</del>
+            </span>
+            <ng-template #Available>
+              <span>{{ timeSlot.time | formatTime}}</span>
+            </ng-template>
+          </button>
           </div>
           <ng-template #non>
             <h4 class="bolder auto"> {{dateSlot.date | date:'mediumDate'}} </h4>

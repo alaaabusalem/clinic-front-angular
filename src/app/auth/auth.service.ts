@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { User } from './user.model';
-import { BehaviorSubject, tap,Observable, map, take } from 'rxjs';
+import { BehaviorSubject, tap,Observable, map, take,throwError } from 'rxjs';
 import { Time } from '@angular/common';
 import { Department } from '../shared/models/Department.model';
 import { Location } from '../shared/models/Location.model';
 import {NgForm,FormControl,FormGroup,Validators} from '@angular/forms'
+import { catchError,switchMap } from 'rxjs/operators';
 
 export interface registeruser {
   name: string;
@@ -131,26 +132,57 @@ GetDepartments():Observable<Department[]>{
     }));
   }
 
-  CreatDoctor(doctorData: any, image: File): Observable<number> {
-    const formData = new FormData();
-    formData.append('postDtoJson', JSON.stringify(doctorData));
-    formData.append('img', image);
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http.post<number>('https://localhost:7197/api/user/RegisterDoctor', formData,options);
-  }
-StoreTheImage(image: File){
-  const formData = new FormData();
-  formData.append('img', image);
-
-  const options = {
-    headers: new HttpHeaders({
-    'Content-Type': 'multipart/form-data',
-  }),
-};
-  return this.http.post(`https://localhost:7197/api/user/RegisterDoctorImg`,formData,options);
+  CreatDoctor(postDtoJson: string, formData: FormData): Observable<number> {
+    return this.http.post<number>(`https://localhost:7197/api/User/RegisterDoctor?postDtoJson=${postDtoJson}`, formData);
 }
+
+  StoreTheImage(image: File): Observable<any> {
+    console.log('Image Object:', image);
+  
+    return this.convertImageToByteArray(image).pipe(
+      switchMap((byteArray) => {
+        console.log('Byte Array:', byteArray);
+  
+        const base64Image = btoa(new Uint8Array(byteArray).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+  
+        var doctorProfilePictureFormData = {
+          image: base64Image,
+        };
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  
+        return this.http.post('https://localhost:7197/api/user/RegisterDoctorImg', JSON.stringify(doctorProfilePictureFormData), { headers });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          console.error('An error occurred:', error.error.message);
+        } else {
+          console.error(`Backend returned code ${error.status}, body was:`, error.error);
+        }
+  
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
+  
+  
+  
+  
+  
+  private convertImageToByteArray(image: File): Observable<ArrayBuffer> {
+    const reader = new FileReader();
+  
+    return new Observable<ArrayBuffer>((observer) => {
+      reader.onloadend = () => {
+        observer.next(reader.result as ArrayBuffer);
+        observer.complete();
+      };
+  
+      reader.onerror = (error) => {
+        observer.error(error);
+      };
+  
+      reader.readAsArrayBuffer(image);
+    });
+  }
+  
 }
